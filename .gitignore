@@ -1,5 +1,6 @@
 # build output
-dist/
+# NOTE: dist/ is intentionally NOT ignored — this repo serves the committed
+# build (and new hashed filenames must be trackable, not silently dropped).
 .astro/
 
 # dependencies
