@@ -1,0 +1,360 @@
+---
+const personalInfo = {
+  name: "BRUNO ESTEVES",
+  role: "MOBILE SOFTWARE DEVELOPER",
+  tagline: "Building digital experiences since 2015",
+  birthDate: "06/12/1988",
+  nationality: "Portuguese",
+  location: "Valbom, Portugal",
+  email: "esteves.brunoagudo@gmail.com",
+  linkedin: "www.linkedin.com/in/brunoagudo"
+};
+---
+
+<section id="hero" class="hero">
+  <div class="hero-background">
+    <div class="grid-overlay"></div>
+  </div>
+  
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-header">
+        <div class="start-text">PRESS START</div>
+        <div class="blink cursor">_</div>
+      </div>
+      
+      <div class="hero-main">
+        <div class="avatar-container">
+          <div class="avatar-frame">
+            <div class="avatar-pixel">
+              <img src="/images/photo.webp" alt="Bruno Esteves" class="profile-photo" />
+            </div>
+          </div>
+        </div>
+        
+        <h1 class="hero-name">
+          <span class="typewriter-text">{personalInfo.name}</span>
+          <span class="blink">_</span>
+        </h1>
+        
+        <div class="hero-role">
+          <span class="role-badge">◆</span>
+          <span class="role-text">{personalInfo.role}</span>
+          <span class="role-badge">◆</span>
+        </div>
+        
+        <p class="hero-tagline">{personalInfo.tagline}</p>
+        
+          <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-label">LVL</span>
+            <span class="stat-value">11</span>
+            <span class="stat-desc">YEARS EXP</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-label">HP</span>
+            <span class="stat-value">100%</span>
+            <span class="stat-desc">MOTIVATION</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-label">MP</span>
+            <span class="stat-value">∞</span>
+            <span class="stat-desc">CREATIVITY</span>
+          </div>
+        </div>
+        
+        <div class="hero-contact">
+          <a href={`mailto:${personalInfo.email}`} class="contact-item glow-hover">
+            <span class="contact-icon">✉</span>
+            <span>{personalInfo.email}</span>
+          </a>
+          <a href={`https://${personalInfo.linkedin}`} target="_blank" class="contact-item glow-hover">
+            <span class="contact-icon">💼</span>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+      
+      <div class="scroll-indicator">
+        <div class="scroll-text">▼ INSERT COIN TO CONTINUE ▼</div>
+        <div class="scroll-arrow">
+          <span>▼</span>
+          <span>▼</span>
+          <span>▼</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(180deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, var(--terminal-black) 70%);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  
+  .hero-header {
+    margin-bottom: 2rem;
+    font-family: var(--font-pixel);
+    font-size: 0.8rem;
+    color: var(--accent-yellow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .start-text {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  
+  .cursor {
+    color: var(--terminal-green);
+  }
+  
+  .hero-main {
+    background: rgba(13, 17, 23, 0.9);
+    border: 4px solid var(--terminal-green);
+    padding: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 
+      0 0 0 4px var(--terminal-black),
+      0 0 50px rgba(0, 255, 65, 0.2);
+  }
+  
+  .avatar-container {
+    margin-bottom: 2rem;
+  }
+  
+  .avatar-frame {
+    display: inline-block;
+    padding: 8px;
+    border: 4px solid var(--terminal-green);
+    background: var(--terminal-black);
+  }
+  
+  .pixel-avatar {
+    width: 120px;
+    height: 120px;
+    background: var(--terminal-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    overflow: hidden;
+  }
+  
+  .profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+  }
+  
+  .hero-name {
+    margin-bottom: 1rem;
+    color: var(--terminal-green);
+    text-shadow: 
+      4px 4px 0 var(--terminal-green-dark),
+      0 0 20px var(--terminal-green);
+  }
+  
+  .typewriter-text {
+    animation: typewriter 2s steps(20) forwards;
+  }
+  
+  @keyframes typewriter {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .hero-role {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-pixel);
+    font-size: 0.9rem;
+    color: var(--accent-cyan);
+  }
+  
+  .role-badge {
+    color: var(--terminal-green);
+    animation: spin 4s linear infinite;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .hero-tagline {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .stat-label {
+    font-family: var(--font-pixel);
+    font-size: 0.6rem;
+    color: var(--accent-yellow);
+  }
+  
+  .stat-value {
+    font-family: var(--font-pixel);
+    font-size: 1.2rem;
+    color: var(--terminal-green);
+  }
+  
+  .stat-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+  
+  .stat-divider {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(180deg, transparent, var(--terminal-green), transparent);
+  }
+  
+  .hero-contact {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--terminal-black-light);
+    border: 2px solid var(--terminal-green-dark);
+    font-family: var(--font-terminal);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .contact-item:hover {
+    background: var(--terminal-green-dark);
+    border-color: var(--terminal-green);
+    transform: translateY(-2px);
+  }
+  
+  .contact-icon {
+    font-size: 1.2rem;
+  }
+  
+  .scroll-indicator {
+    margin-top: 3rem;
+  }
+  
+  .scroll-text {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--accent-yellow);
+    margin-bottom: 0.5rem;
+    animation: pulse 2s infinite;
+  }
+  
+  .scroll-arrow {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--terminal-green);
+  }
+  
+  .scroll-arrow span {
+    animation: bounce 1s infinite;
+  }
+  
+  .scroll-arrow span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .scroll-arrow span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-main {
+      padding: 2rem 1rem;
+    }
+    
+    .hero-stats {
+      gap: 1rem;
+    }
+    
+    .stat-divider {
+      display: none;
+    }
+    
+    .hero-contact {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .pixel-avatar {
+      width: 80px;
+      height: 80px;
+      font-size: 2.5rem;
+    }
+  }
+</style>

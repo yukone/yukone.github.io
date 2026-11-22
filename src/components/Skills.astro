@@ -1,0 +1,404 @@
+---
+const skillCategories = [
+  {
+    name: "PROGRAMMING LANGUAGES",
+    icon: "💻",
+    skills: ["Dart", "Kotlin", "Java", "C#", "C++", "ActionScript3"]
+  },
+  {
+    name: "MOBILE DEVELOPMENT",
+    icon: "📱",
+    skills: [
+      "Flutter (Cross-platform UI, Lottie, BLoC, GetX, Chopper, GetIt, Melos, flutter_test, Mockito, Sembast)",
+      "Kotlin/Java Android SDK, Android Jetpack (ViewModel, Flow, LiveData, Data Binding, Navigation, WorkManager, ConstraintLayout, Retrofit, Koin, Coroutines, Coil/Picasso, Junit, Expresso, Room)"
+    ]
+  },
+  {
+    name: "ARCHITECTURES",
+    icon: "🏗️",
+    skills: ["MVVM", "Clean Architecture"]
+  },
+  {
+    name: "DATABASES",
+    icon: "🗄️",
+    skills: ["SQLite", "SQL Server", "MySQL"]
+  },
+  {
+    name: "AI TOOLS",
+    icon: "🤖",
+    skills: [
+      "OpenCode (Code planning/building)",
+      "LM Studio (LLM usage/API)",
+      "Forge UI neo (Stable Diffusion/Flux image generation)"
+    ]
+  },
+  {
+    name: "DEVELOPMENT TOOLS",
+    icon: "🛠️",
+    skills: ["Android Studio", "Unity3D", "Git", "SVN", "Gradle"]
+  },
+  {
+    name: "PROJECT MANAGEMENT",
+    icon: "📋",
+    skills: ["Trello", "Jira", "Phabricator"]
+  }
+];
+
+const languages = [
+  { 
+    name: "Portuguese", 
+    icon: "🇵🇹",
+    flagImage: "/images/flag-pt.webp", 
+    speak: 100,
+    write: 100
+  },
+  { 
+    name: "Spanish", 
+    icon: "🇪🇸",
+    flagImage: "/images/flag-es.webp",
+    speak: 100,
+    write: 90
+  },
+  { 
+    name: "English", 
+    icon: "🇬🇧",
+    flagImage: "/images/flag-gb.webp",
+    speak: 60,
+    write: 85
+  }
+];
+---
+
+<section id="skills" class="skills">
+  <div class="container">
+    <h2 class="section-title fade-in">▶ SKILL TREE ◀</h2>
+    
+    <div class="skills-grid">
+      {skillCategories.map((category, catIndex) => (
+        <div class="skill-category" style={`animation-delay: ${catIndex * 0.15}s`}>
+          <div class="category-header">
+            <span class="category-icon">{category.icon}</span>
+            <h3 class="category-name">{category.name}</h3>
+          </div>
+          
+          <div class="skills-list">
+            {category.skills.map((skill, skillIndex) => (
+              <div class="skill-item" style={`animation-delay: ${(catIndex * 0.15) + (skillIndex * 0.1)}s`}>
+                <span class="skill-bullet">▸</span>
+                <span class="skill-name">{skill}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="languages-section">
+      <h3 class="languages-title">▶ LANGUAGE SKILLS ◀</h3>
+      <div class="languages-grid">
+        {languages.map((lang, index) => (
+          <div class="language-card" style={`animation-delay: ${index * 0.2}s`}>
+            <div class="language-header">
+              <img src={lang.flagImage} alt={lang.name} class="language-flag" />
+              <div class="language-name">{lang.name}</div>
+            </div>
+            
+            <div class="language-bars">
+              <div class="lang-bar-group">
+                <div class="lang-bar-label">SPEAK</div>
+                <div class="lang-bar-container">
+                  <div 
+                    class="lang-bar-fill speak" 
+                    style={`width: ${lang.speak}%; animation-delay: ${index * 0.2}s`}
+                  ></div>
+                </div>
+              </div>
+              
+              <div class="lang-bar-group">
+                <div class="lang-bar-label">WRITE</div>
+                <div class="lang-bar-container">
+                  <div 
+                    class="lang-bar-fill write" 
+                    style={`width: ${lang.write}%; animation-delay: ${(index * 0.2) + 0.1}s`}
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    background: var(--terminal-black);
+  }
+  
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .skill-category {
+    background: var(--terminal-black-light);
+    border: 3px solid var(--terminal-green-dark);
+    padding: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .skill-category:hover {
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.15);
+  }
+  
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--terminal-green-dark);
+  }
+  
+  .category-icon {
+    font-size: 2rem;
+  }
+  
+  .category-name {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--accent-cyan);
+    margin: 0;
+  }
+  
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .skill-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    opacity: 0;
+    animation: slideInRight 0.4s ease-out forwards;
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .skill-bullet {
+    color: var(--terminal-green);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+  
+  .skill-name {
+    font-family: var(--font-terminal);
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+  
+  .languages-section {
+    margin-top: 4rem;
+  }
+  
+  .languages-title {
+    text-align: center;
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    color: var(--accent-cyan);
+    margin-bottom: 2rem;
+  }
+  
+  .languages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  .language-card {
+    background: var(--terminal-black-light);
+    border: 3px solid var(--terminal-green-dark);
+    padding: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+    transition: all 0.3s ease;
+  }
+  
+  .language-card:hover {
+    border-color: var(--terminal-green);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+  }
+  
+  .language-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--terminal-green-dark);
+  }
+  
+  .language-flag {
+    width: 50px;
+    height: 35px;
+    object-fit: cover;
+    border: 2px solid var(--terminal-green-dark);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+  }
+  
+  .language-name {
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    color: var(--terminal-green);
+  }
+  
+  .language-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .lang-bar-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .lang-bar-label {
+    font-family: var(--font-pixel);
+    font-size: 0.6rem;
+    color: var(--accent-yellow);
+    width: 60px;
+    flex-shrink: 0;
+  }
+  
+  .lang-bar-container {
+    flex: 1;
+    height: 20px;
+    background: var(--terminal-gray);
+    border: 2px solid var(--terminal-green-dark);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .lang-bar-fill {
+    height: 100%;
+    width: 0;
+    animation: fillBar 1s ease-out forwards;
+    position: relative;
+  }
+  
+  .lang-bar-fill.speak {
+    background: linear-gradient(90deg, var(--terminal-green-dark), var(--terminal-green));
+  }
+  
+  .lang-bar-fill.write {
+    background: linear-gradient(90deg, var(--accent-cyan), #66ffff);
+  }
+  
+  @keyframes fillBar {
+    from { width: 0; }
+    to { width: var(--target-width); }
+  }
+  
+  .lang-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 9px,
+      rgba(0, 0, 0, 0.2) 9px,
+      rgba(0, 0, 0, 0.2) 10px
+    );
+  }
+  
+  .lang-bar-value {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    width: 45px;
+    text-align: right;
+  }
+  
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .skill-category {
+      padding: 1rem;
+    }
+    
+    .languages-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .language-card {
+      padding: 1rem;
+    }
+    
+    .lang-bar-group {
+      gap: 0.5rem;
+    }
+    
+    .lang-bar-label {
+      width: 50px;
+      font-size: 0.55rem;
+    }
+    
+    .lang-bar-value {
+      width: 40px;
+      font-size: 0.6rem;
+    }
+  }
+</style>
+
+<script>
+  // Add Intersection Observer for skill bar animations
+  document.addEventListener('DOMContentLoaded', () => {
+    const langBars = document.querySelectorAll('.lang-bar-fill');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          const width = bar.style.width;
+          bar.style.setProperty('--target-width', width);
+          bar.style.width = '0';
+          
+          setTimeout(() => {
+            bar.style.width = width;
+          }, 100);
+          
+          observer.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    langBars.forEach(bar => observer.observe(bar));
+  });
+</script>

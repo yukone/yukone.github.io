@@ -1,0 +1,958 @@
+---
+const projects = [
+  {
+    id: 1,
+    title: "NEWS FOR SOLFORGE",
+    period: "2014 - 2015",
+    description: "Android news reader application for the digital card game Solforge.",
+    tech: ["Java", "Android SDK", "RSS"],
+    link: "https://play.google.com/store/apps/details?id=com.ocao.solforgenews.app",
+    image: "/images/proj-news for solforge.webp",
+    color: "#FF6B6B",
+    buttonText: "GOOGLE PLAY"
+  },
+  {
+    id: 2,
+    title: "BWYC ALPHA",
+    period: "2014 - 2016",
+    description: "Casual reflex-testing game for Android. Featured unique gameplay mechanics.",
+    tech: ["Flash", "ActionScript3"],
+    link: "https://i.postimg.cc/jjyHgC24/unnamed.png",
+    image: "/images/proj-bwyc.webp",
+    color: "#4ECDC4",
+    discontinued: true,
+    buttonText: "SCREENSHOT"
+  },
+  {
+    id: 3,
+    title: "LP REFILL NOTIFY",
+    period: "2015 - 2016",
+    description: "Android notification utility for LP restoration tracking in Love Live game.",
+    tech: ["Java", "Android SDK", "Notifications"],
+    link: "https://play.google.com/store/apps/details?id=com.ocao.lprnsif",
+    image: "/images/proj-LP Refill Notify for Love Live.webp",
+    color: "#FFE66D",
+    buttonText: "GOOGLE PLAY"
+  },
+  {
+    id: 4,
+    title: "AICE TUNING HYPERSPEED RACING",
+    period: "2020 - Present",
+    description: "Competitive futuristic ship racing game for Android and Windows platforms.",
+    tech: ["Unity3D", "C#", "Multiplatform"],
+    link: "https://www.youtube.com/watch?v=SJgR2_s9c8E",
+    image: "/images/proj-aice tuning hyperspeed racing.webp",
+    color: "#95E1D3",
+    buttonText: "EXPLORE",
+    expandable: {
+      youtubeUrl: "https://www.youtube.com/embed/SJgR2_s9c8E",
+      gallery: [
+        "/images/bg1.webp",
+        "/images/bg2.webp",
+        "/images/bg3.webp",
+        "/images/bg4.webp",
+        "/images/bg5.webp",
+        "/images/bg6.webp"
+      ]
+    }
+  },
+  {
+    id: 5,
+    title: "AICE TUNING HYPERSPEED RACING MANAGER",
+    period: "2023 - Present",
+    description: "Retro management game of futuristic ship races for Android.",
+    tech: ["Kotlin", "Android SDK", "Game Design"],
+    link: null,
+    color: "#F38181",
+    icon: "?"
+  },
+  {
+    id: 6,
+    title: "CAO LAUNCHER",
+    period: "2025 - Present",
+    description: "Simplified Android Launcher focused on accessibility and ease of use.",
+    tech: ["Kotlin", "Android SDK", "UI/UX"],
+    link: "https://play.google.com/store/apps/details?id=com.ocao.caolauncher",
+    image: "/images/proj-cao launcher.webp",
+    color: "#AA96DA",
+    buttonText: "GOOGLE PLAY"
+  },
+  {
+    id: 7,
+    title: "FRITR",
+    period: "2026 - Present",
+    description: "Offline-first personal finance tracker: income, expenses, budgets, loans, savings goals, PDF/CSV reports and home-screen widget. Encrypted with biometric lock.",
+    tech: ["Flutter", "Dart", "Android SDK"],
+    link: "https://play.google.com/store/apps/details?id=com.fritr.expense.budget.tracker",
+    image: "/images/proj-fritr.webp",
+    color: "#5FE3A1",
+    buttonText: "GOOGLE PLAY"
+  }
+];
+
+const certifications = [
+  {
+    name: "Programming Mobile Applications for Android Handheld Systems",
+    platform: "Coursera",
+    date: "01/2014 - 04/2014",
+    link: "https://www.dropbox.com/s/z44q04o90ifshwh/Coursera android 2014.pdf?dl=0",
+    image: "/images/achiev-coursera_logo.webp"
+  },
+  {
+    name: "Unity3D - Master Unity By Building Games From Scratch",
+    platform: "Udemy",
+    date: "03/2016 - 05/2016",
+    license: "UC-L0IN0XPF",
+    link: "https://www.udemy.com/certificate/UC-L0IN0XPF/",
+    image: "/images/achiev-udemy_logo.webp"
+  }
+];
+---
+
+<section id="projects" class="projects">
+  <div class="container">
+    <h2 class="section-title fade-in">▶ PERSONAL PROJECTS LIBRARY ◀</h2>
+    
+    <div class="projects-grid">
+      {projects.map((project, index) => (
+        <div class="project-wrapper" style={`animation-delay: ${index * 0.15}s`}>
+          <div class="project-cartridge" data-project-id={project.id}>
+            <div class="cartridge-body">
+              <div class="cartridge-top">
+                <div class="cartridge-grip"></div>
+              </div>
+              
+              <div class="cartridge-label">
+                <div class="label-header" style={`background: ${project.color}`}>
+                  {project.image ? (
+                    <img src={project.image} alt={project.title} class="label-project-image" />
+                  ) : (
+                    <span class="label-icon">📰</span>
+                  )}
+                  <span class="label-period">{project.period}</span>
+                </div>
+                
+                <div class="label-content">
+                  <h3 class="project-title">{project.title}</h3>
+                  <p class="project-description">{project.description}</p>
+                  
+                  <div class="project-tech">
+                    {project.tech.map(tech => (
+                      <span class="tech-badge">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+                
+                {project.discontinued && (
+                  <div class="discontinued-badge">LEGACY</div>
+                )}
+              </div>
+              
+              <div class="cartridge-bottom">
+                {project.expandable ? (
+                  <button class="play-btn open-modal" data-modal={`modal-${project.id}`}>
+                    <span>▶</span>
+                    <span>{project.buttonText || "EXPLORE"}</span>
+                  </button>
+                ) : project.link ? (
+                  <a href={project.link} target="_blank" class="play-btn">
+                    <span>▶</span>
+                    <span>{project.buttonText || "VIEW"}</span>
+                  </a>
+                ) : (
+                  <div class="play-btn disabled">
+                    <span>🔒</span>
+                    <span>COMING SOON</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Modals -->
+    {projects.filter(p => p.expandable).map(project => (
+      <div class="modal-overlay" id={`modal-${project.id}`}>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">{project.title}</h3>
+            <button class="modal-close" data-close={`modal-${project.id}`}>×</button>
+          </div>
+          <div class="modal-body">
+            {/* YouTube Video */}
+            <div class="modal-section">
+              <h4 class="section-label">▶ GAMEPLAY VIDEO</h4>
+              <div class="video-container">
+                <iframe 
+                  src={project.expandable?.youtubeUrl}
+                  title={`${project.title} Video`}
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+            
+            {/* Image Gallery */}
+            <div class="modal-section">
+              <h4 class="section-label">▶ SCREENSHOTS</h4>
+              <div class="gallery-container" data-gallery={`gallery-${project.id}`}>
+                <button class="gallery-nav prev">◀</button>
+                <div class="gallery-images">
+                  {project.expandable?.gallery.map((img, imgIndex) => (
+                    <img 
+                      src={img} 
+                      alt={`${project.title} screenshot ${imgIndex + 1}`}
+                      class={`gallery-image ${imgIndex === 0 ? 'active' : ''}`}
+                      data-index={imgIndex}
+                    />
+                  ))}
+                </div>
+                <button class="gallery-nav next">▶</button>
+                <div class="gallery-counter">1 / {project.expandable?.gallery.length}</div>
+              </div>
+            </div>
+            
+            {/* Downloads */}
+            {project.expandable?.downloads && (
+            <div class="modal-section">
+              <h4 class="section-label">▶ DOWNLOADS</h4>
+              <div class="downloads-grid">
+                {project.expandable?.downloads.map(download => (
+                  <a href={download.file} download class="download-btn">
+                    <img src={download.icon} alt={download.label} class="download-icon-img" />
+                    <div class="download-info">
+                      <span class="download-label">{download.label}</span>
+                      <span class="download-size">{download.size}</span>
+                    </div>
+                    <span class="download-arrow">⬇</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+            )}
+            
+            {/* External Link */}
+            {project.link && (
+              <div class="modal-section external-link-section">
+                <a href={project.link} target="_blank" class="external-link">
+                  <span>▶ Watch on YouTube</span>
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+    
+    <div class="certifications-section">
+      <h3 class="cert-title">▶ ACHIEVEMENTS UNLOCKED ◀</h3>
+      <div class="cert-grid">
+        {certifications.map((cert, index) => (
+          <div class="cert-card" style={`animation-delay: ${index * 0.2}s`}>
+            <div class="cert-image-container">
+              <img src={cert.image} alt={cert.platform} class="cert-image" />
+            </div>
+            <div class="cert-info">
+              <h4 class="cert-name">{cert.name}</h4>
+              <div class="cert-meta">
+                <span class="cert-platform">{cert.platform}</span>
+                <span class="cert-date">{cert.date}</span>
+                {cert.license && <span class="cert-license">ID: {cert.license}</span>}
+              </div>
+            </div>
+            <a href={cert.link} target="_blank" class="cert-link">
+              <span>VIEW</span>
+              <span>▶</span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Modal functionality
+  document.querySelectorAll('.open-modal').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const modalId = this.getAttribute('data-modal');
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+        
+        // Start carousel for this modal
+        startCarousel(modal);
+      }
+    });
+  });
+
+  document.querySelectorAll('.modal-close').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const modalId = this.getAttribute('data-close');
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        stopCarousel(modal);
+      }
+    });
+  });
+
+  // Close modal when clicking overlay
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        stopCarousel(this);
+      }
+    });
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        stopCarousel(modal);
+      });
+    }
+  });
+
+  // Carousel auto-advance
+  const carouselIntervals = new Map();
+  const CAROUSEL_INTERVAL = 3000; // 3 seconds
+
+  function startCarousel(modal) {
+    const galleryContainer = modal.querySelector('.gallery-container');
+    if (!galleryContainer) return;
+    
+    const modalId = modal.id;
+    
+    // Clear any existing interval
+    stopCarousel(modal);
+    
+    // Start new interval
+    const interval = setInterval(() => {
+      navigateGallery(galleryContainer, 'next');
+    }, CAROUSEL_INTERVAL);
+    
+    carouselIntervals.set(modalId, interval);
+  }
+
+  function stopCarousel(modal) {
+    const modalId = modal.id;
+    if (carouselIntervals.has(modalId)) {
+      clearInterval(carouselIntervals.get(modalId));
+      carouselIntervals.delete(modalId);
+    }
+  }
+
+  function navigateGallery(container, direction) {
+    const images = container.querySelectorAll('.gallery-image');
+    const counter = container.querySelector('.gallery-counter');
+    
+    let currentIndex = 0;
+    images.forEach((img, idx) => {
+      if (img.classList.contains('active')) {
+        currentIndex = idx;
+        img.classList.remove('active');
+      }
+    });
+    
+    let newIndex;
+    if (direction === 'prev') {
+      newIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    } else {
+      newIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+    }
+    
+    images[newIndex].classList.add('active');
+    counter.textContent = `${newIndex + 1} / ${images.length}`;
+  }
+
+  // Manual gallery navigation
+  document.querySelectorAll('.gallery-nav').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const container = this.closest('.gallery-container');
+      const isPrev = this.classList.contains('prev');
+      navigateGallery(container, isPrev ? 'prev' : 'next');
+      
+      // Reset interval on manual navigation
+      const modal = this.closest('.modal-overlay');
+      if (modal) {
+        stopCarousel(modal);
+        startCarousel(modal);
+      }
+    });
+  });
+</script>
+
+<style>
+  .projects {
+    background: linear-gradient(180deg, var(--terminal-black-light) 0%, var(--terminal-black) 100%);
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
+  
+  .project-wrapper {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .project-cartridge {
+    perspective: 1000px;
+  }
+  
+  .cartridge-body {
+    background: var(--terminal-gray);
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    transform-style: preserve-3d;
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.5),
+      0 0 0 4px var(--terminal-black-light);
+  }
+  
+  .project-cartridge:hover .cartridge-body {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 
+      0 20px 40px rgba(0, 255, 65, 0.2),
+      0 0 0 4px var(--terminal-green);
+  }
+  
+  .cartridge-top {
+    background: var(--terminal-black);
+    padding: 1rem;
+    border-bottom: 4px solid var(--terminal-green-dark);
+  }
+  
+  .cartridge-grip {
+    height: 12px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--terminal-green-dark),
+      var(--terminal-green-dark) 8px,
+      transparent 8px,
+      transparent 16px
+    );
+    opacity: 0.5;
+  }
+  
+  .cartridge-label {
+    background: var(--terminal-black-light);
+    margin: 1rem;
+    border: 3px solid var(--terminal-green-dark);
+    position: relative;
+    min-height: 200px;
+  }
+  
+  .label-header {
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-pixel);
+    font-size: 0.6rem;
+    color: var(--terminal-black);
+    min-height: 60px;
+  }
+  
+  .label-project-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 2px solid var(--terminal-black);
+    background: var(--terminal-black);
+  }
+  
+  .label-icon {
+    font-size: 1.5rem;
+  }
+  
+  .label-content {
+    padding: 1.5rem;
+  }
+  
+  .project-title {
+    font-family: var(--font-pixel);
+    font-size: 0.8rem;
+    color: var(--terminal-green);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  .project-description {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .tech-badge {
+    background: var(--terminal-black);
+    border: 1px solid var(--terminal-green-dark);
+    padding: 0.25rem 0.5rem;
+    font-family: var(--font-pixel);
+    font-size: 0.5rem;
+    color: var(--accent-cyan);
+  }
+  
+  .discontinued-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    font-family: var(--font-pixel);
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid white;
+  }
+  
+  .cartridge-bottom {
+    padding: 1rem;
+    background: var(--terminal-black);
+    border-top: 4px solid var(--terminal-green-dark);
+  }
+  
+  .play-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--terminal-green-dark);
+    border: 3px solid var(--terminal-green);
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--terminal-black);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: 100%;
+  }
+  
+  .play-btn:hover {
+    background: var(--terminal-green);
+    box-shadow: 0 0 20px var(--terminal-green);
+  }
+  
+  .play-btn.disabled {
+    background: var(--terminal-gray);
+    border-color: var(--text-secondary);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+  }
+
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    backdrop-filter: blur(5px);
+  }
+
+  .modal-overlay.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: var(--terminal-black-light);
+    border: 4px solid var(--terminal-green);
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlide 0.3s ease-out;
+  }
+
+  @keyframes modalSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modal-header {
+    background: var(--terminal-green-dark);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--terminal-green);
+  }
+
+  .modal-title {
+    font-family: var(--font-pixel);
+    font-size: 0.8rem;
+    color: var(--terminal-black);
+    margin: 0;
+  }
+
+  .modal-close {
+    background: none;
+    border: none;
+    font-family: var(--font-pixel);
+    font-size: 1.5rem;
+    color: var(--terminal-black);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .modal-close:hover {
+    color: #ff0000;
+    transform: scale(1.2);
+  }
+
+  .modal-body {
+    padding: 2rem;
+  }
+
+  .modal-section {
+    margin-bottom: 2rem;
+  }
+
+  .modal-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-label {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--accent-cyan);
+    margin-bottom: 1rem;
+  }
+
+  /* Video Section */
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border: 3px solid var(--terminal-green-dark);
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Gallery Section */
+  .gallery-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .gallery-images {
+    flex: 1;
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border: 3px solid var(--terminal-green-dark);
+    background: var(--terminal-black);
+  }
+
+  .gallery-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .gallery-image.active {
+    opacity: 1;
+  }
+
+  .gallery-nav {
+    background: var(--terminal-green-dark);
+    border: 2px solid var(--terminal-green);
+    color: var(--terminal-black);
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  .gallery-nav:hover {
+    background: var(--terminal-green);
+    box-shadow: 0 0 15px var(--terminal-green);
+  }
+
+  .gallery-counter {
+    position: absolute;
+    bottom: 10px;
+    right: 50%;
+    transform: translateX(50%);
+    background: var(--terminal-black);
+    border: 2px solid var(--terminal-green-dark);
+    padding: 0.25rem 0.75rem;
+    font-family: var(--font-pixel);
+    font-size: 0.6rem;
+    color: var(--terminal-green);
+  }
+
+  /* Downloads Section */
+  .downloads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .download-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--terminal-black);
+    border: 3px solid var(--terminal-green-dark);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .download-btn:hover {
+    background: var(--terminal-green-dark);
+    border-color: var(--terminal-green);
+    transform: translateX(5px);
+  }
+
+  .download-icon-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .download-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .download-label {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--terminal-green);
+  }
+
+  .download-size {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  .download-arrow {
+    font-size: 1.5rem;
+    color: var(--accent-cyan);
+  }
+
+  /* External Link Section */
+  .external-link-section {
+    text-align: center;
+  }
+
+  .external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--accent-cyan);
+    border: 3px solid var(--accent-cyan);
+    color: var(--terminal-black);
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .external-link:hover {
+    background: transparent;
+    color: var(--accent-cyan);
+    box-shadow: 0 0 20px var(--accent-cyan);
+  }
+
+  /* Prevent body scroll when modal is open */
+  body.modal-open {
+    overflow: hidden;
+  }
+  
+  /* Certifications */
+  .certifications-section {
+    margin-top: 5rem;
+  }
+  
+  .cert-title {
+    text-align: center;
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    color: var(--accent-cyan);
+    margin-bottom: 2rem;
+  }
+  
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .cert-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--terminal-black-light);
+    border: 3px solid var(--terminal-green-dark);
+    padding: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+    transition: all 0.3s ease;
+  }
+  
+  .cert-card:hover {
+    border-color: var(--accent-yellow);
+    box-shadow: 0 0 30px rgba(255, 230, 109, 0.2);
+  }
+  
+  .cert-image-container {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    background: var(--terminal-black);
+    border: 2px solid var(--terminal-green-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .cert-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .cert-info {
+    flex: 1;
+  }
+  
+  .cert-name {
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    color: var(--terminal-green);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  
+  .cert-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  
+  .cert-platform {
+    color: var(--accent-cyan);
+    font-weight: bold;
+  }
+  
+  .cert-license {
+    font-family: var(--font-pixel);
+    font-size: 0.55rem;
+    color: var(--accent-yellow);
+  }
+  
+  .cert-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.75rem 1rem;
+    background: var(--terminal-green-dark);
+    border: 2px solid var(--terminal-green);
+    font-family: var(--font-pixel);
+    font-size: 0.6rem;
+    color: var(--terminal-black);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+  
+  .cert-link:hover {
+    background: var(--terminal-green);
+    box-shadow: 0 0 15px var(--terminal-green);
+  }
+  
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .gallery-images {
+      height: 180px;
+    }
+    
+    .downloads-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .cert-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .cert-card {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .cert-link {
+      width: 100%;
+    }
+
+    .modal-overlay {
+      padding: 1rem;
+    }
+
+    .modal-body {
+      padding: 1rem;
+    }
+  }
+</style>
